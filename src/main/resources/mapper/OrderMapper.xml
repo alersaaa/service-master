@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meetball.demo.persistence.OrderMapper">
+    <insert id="insertOrder" parameterType="com.meetball.demo.domain.Order">
+          INSERT INTO orders (orderId, ownerName, driverName, driverLicense, beginStr, endStr, amount)
+              VALUES   (#{orderId}, #{ownerName}, #{driverName}, #{driverLicense}, #{beginStr}, #{endStr}, #{amount})
+    </insert>
+
+    <select id="getUserOrderList" resultType="String">
+        SELECT orderId FROM orders WHERE ownerName = #{userName}
+    </select>
+
+    <select id="getDriverOrderList" resultType="String">
+        SELECT orderId FROM orders WHERE driverName = #{userName}
+    </select>
+
+    <select id="getOrderInfo" resultType="com.meetball.demo.domain.Order">
+        SELECT * FROM orders WHERE orderId = #{orderId}
+    </select>
+
+
+</mapper>
